@@ -90,8 +90,13 @@ input[type='text']:focus
     vertical-align: top;
 
     border: 2px solid black;
-}
 
+    -webkit-animation: fadein 1s;
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 .itemDuration
 {
     line-height: .1;
@@ -100,7 +105,7 @@ input[type='text']:focus
     z-index: 2;
     top: 18vw;
     right: 2%;
-
+    -webkit-user-select: none;
     color: #fff;
     background: #000;
 }
@@ -110,59 +115,43 @@ p
     font-family: Verdana;
 }
 
-.itemTitle p,
+.itemTitle a,
 .itemPublished p,
 .itemDescription p,
 .itemChannelTitle p
 {
     margin-top: 0;
-
+    -webkit-user-select: none;
     text-overflow: ellipsis;
 }
 
-img
-{
-    position: relative;
-    z-index: 2;
+.itemTitle a{
+    font-family: Verdana;
+    text-decoration:none;
+    color:#ffffff;
+    font-size:20px;
+    margin: 0 auto;
 }
-
-img:hover
-{
-    opacity: .2;
+.itemTitle a:hover{
+    text-decoration:underline;
 }
-
 #itemPreview
 {
     position: relative;
+    z-index:-1;
 
     display: block;
 
     background: black;
+
 }
 
-#itemPreview:before
-{
-    position: absolute;
-    z-index: 1;
-    top: 35%;
-    left: 45%;
 
-    width: 0;
-    height: 0;
-
-    content: '';
-
-    border-width: 50px 0 50px 100px;
-    border-style: solid;
-    border-color: transparent transparent transparent #007bff;
+#itemPreview img{
+    -webkit-user-select: none;
 }
 
-.itemTitle p
-{
-    font-size: 20px;
 
-    text-align: center;
-}
 
 .paginWrapper
 {
@@ -174,12 +163,12 @@ img:hover
     display: inline-block;
 }
 
-.pagination a
+.pagination div
 {
     float: left;
 
     margin: 0 10px 0 10px;
-    padding: 8px 16px;
+    padding: 16px 18px;
 
     transition: background-color .3s;
     text-decoration: none;
@@ -187,7 +176,7 @@ img:hover
     color: black;
 }
 
-.pagination a.active
+.pagination div.active
 {
     color: white;
     background-color: blueviolet;
@@ -197,12 +186,19 @@ img:hover
 .pagination #nextPage:hover
 {
     background-color: blueviolet;
+    cursor:pointer;
 }
-
+#previousPage,
+#nextPage,
+#currentPage{
+    display:inline-block;
+    font-size:2vw;
+    -webkit-user-select: none;
+}
 #currentPage
 {
-    width: 8px;
-    height: 16px;
+    width: 2vw;
+    height: 2vw;
 }
 
 @media screen and (max-device-width: 1200px)

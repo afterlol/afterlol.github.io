@@ -78,9 +78,9 @@ function createPaging() {
     document.body.appendChild(divWrap);
     let divPaging = document.createElement('div');
     divPaging.className = 'pagination';
-    divPaging.innerHTML = `<a href="" id="previousPage">&laquo;</a>
-     <a href="" id="currentPage"></a>
-     <a href="" id="nextPage">&raquo;</a>`;
+    divPaging.innerHTML = `<div id="previousPage">&laquo;</div>
+     <div id="currentPage"></div>
+     <div id="nextPage">&raquo;</div>`;
     document.getElementsByClassName('paginWrapper')[0].appendChild(divPaging);
 }
 
@@ -259,7 +259,7 @@ function onSearch(response) {
         });
         videoRequest.execute(videoResponse => {
             duration = videoResponse.items[0].contentDetails.duration;
-            div.innerHTML = "<a id='itemPreview' href='http://www.youtube.com/watch?v=" + videoID + "'>" + "<img src=\"" + preview + "\" width='100%' height='100%'/>" + "</a>" + "<div class='itemTitle'><p>" + title + "</p></div>" + "<div class='itemPublished'><p>Uploaded " + publishedAt + "</p></div>" + "<div class='itemDuration'><p>" + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parseDuration_js__["a" /* default */])(duration) + "</p></div>" + "<div class='itemChannelTitle'><p><b>Channel:<b> " + channelTitle + "</p></div>" + "<div class='itemDescription'><p>" + description + "</p></div>";
+            div.innerHTML = "<a id='itemPreview'>" + "<img src=\"" + preview + "\" width='100%' height='100%'/>" + "</a>" + "<div class='itemTitle'><a href='http://www.youtube.com/watch?v=" + videoID + "'>" + title + "</a></div>" + "<div class='itemPublished'><p>Uploaded " + publishedAt + "</p></div>" + "<div class='itemDuration'><p>" + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parseDuration_js__["a" /* default */])(duration) + "</p></div>" + "<div class='itemChannelTitle'><p><b>Channel:<b> " + channelTitle + "</p></div>" + "<div class='itemDescription'><p>" + description + "</p></div>";
             items.push(div);
         });
     }
@@ -270,6 +270,18 @@ function onSearch(response) {
             }
             openPage();
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__createPaging_js__["a" /* default */])();
+            document.getElementById('previousPage').onclick = () => {
+                if (items.length !== 0 && count !== 1) {
+                    count--;
+                    openPage();
+                }
+            };
+            document.getElementById('nextPage').onclick = () => {
+                if (items.length !== 0) {
+                    count++;
+                    openPage();
+                }
+            };
             clearInterval(interval);
         }
     }, 200);
@@ -303,7 +315,7 @@ function onPreload(response) {
         });
         videoRequest.execute(videoResponse => {
             duration = videoResponse.items[0].contentDetails.duration;
-            div.innerHTML = "<a id='itemPreview' href='http://www.youtube.com/watch?v=" + videoID + "'>" + "<img src=\"" + preview + "\" width='100%' height='100%'/>" + "</a>" + "<div class='itemTitle'><p>" + title + "</p></div>" + "<div class='itemPublished'><p>Uploaded " + publishedAt + "</p></div>" + "<div class='itemDuration'><p>" + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parseDuration_js__["a" /* default */])(duration) + "</p></div>" + "<div class='itemChannelTitle'><b>Channel : </b><p>" + channelTitle + "</p></div>" + "<div class='itemDescription'><b>About</b><p>" + description + "</p></div>";
+            div.innerHTML = "<a id='itemPreview'>" + "<img src=\"" + preview + "\" width='100%' height='100%'/>" + "</a>" + "<div class='itemTitle'><a href='http://www.youtube.com/watch?v=" + videoID + "'>" + title + "</a></div>" + "<div class='itemPublished'><p>Uploaded " + publishedAt + "</p></div>" + "<div class='itemDuration'><p>" + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parseDuration_js__["a" /* default */])(duration) + "</p></div>" + "<div class='itemChannelTitle'><b>Channel : </b><p>" + channelTitle + "</p></div>" + "<div class='itemDescription'><b>About</b><p>" + description + "</p></div>";
             items.push(div);
         });
     }

@@ -4,8 +4,8 @@ export default function createPaging(){
     document.body.appendChild(divWrap);
     let divPaging = document.createElement('div');
     divPaging.className = 'pagination';
-    divPaging.innerHTML = `<a href="" id="previousPage">&laquo;</a>
-     <a href="" id="currentPage"></a>
-     <a href="" id="nextPage">&raquo;</a>`;
+    divPaging.innerHTML = `<div id="previousPage">&laquo;</div>
+     <div id="currentPage"></div>
+     <div id="nextPage">&raquo;</div>`;
     document.getElementsByClassName('paginWrapper')[0].appendChild(divPaging);
 }

@@ -85,10 +85,10 @@ function onSearch(response) {
         });
         videoRequest.execute((videoResponse) => {
             duration = videoResponse.items[0].contentDetails.duration;
-            div.innerHTML = "<a id='itemPreview' href='http://www.youtube.com/watch?v=" + videoID + "'>" +
+            div.innerHTML = "<a id='itemPreview'>" +
                 "<img src=\"" + preview + "\" width='100%' height='100%'/>" +
                 "</a>" +
-                "<div class='itemTitle'><p>" + title + "</p></div>" +
+                "<div class='itemTitle'><a href='http://www.youtube.com/watch?v=" + videoID + "'>" + title + "</a></div>" +
                 "<div class='itemPublished'><p>Uploaded " + publishedAt + "</p></div>" +
                 "<div class='itemDuration'><p>" + parseDuration(duration) + "</p></div>" +
                 "<div class='itemChannelTitle'><p><b>Channel:<b> " + channelTitle + "</p></div>" +
@@ -103,13 +103,17 @@ function onSearch(response) {
             }
             openPage();
             createPaging();
-            document.getElementById('previousPage').onClick = () => {
-                count--;
-                openPage();
+            document.getElementById('previousPage').onclick = () =>{
+                if (items.length !== 0 && count !== 1) {
+                    count--;
+                    openPage();
+                }
             }
-            document.getElementById('nextPage').onClick = () => {
-                count++;
-                openPage();
+            document.getElementById('nextPage').onclick = () =>{
+                if (items.length !== 0) {
+                    count++;
+                    openPage();
+                }
             }
             clearInterval(interval);
         }
@@ -144,10 +148,10 @@ function onPreload(response) {
         });
         videoRequest.execute((videoResponse) => {
             duration = videoResponse.items[0].contentDetails.duration;
-            div.innerHTML = "<a id='itemPreview' href='http://www.youtube.com/watch?v=" + videoID + "'>" +
+            div.innerHTML = "<a id='itemPreview'>" +
                 "<img src=\"" + preview + "\" width='100%' height='100%'/>" +
                 "</a>" +
-                "<div class='itemTitle'><p>" + title + "</p></div>" +
+                "<div class='itemTitle'><a href='http://www.youtube.com/watch?v=" + videoID + "'>" + title + "</a></div>" +
                 "<div class='itemPublished'><p>Uploaded " + publishedAt + "</p></div>" +
                 "<div class='itemDuration'><p>" + parseDuration(duration) + "</p></div>" +
                 "<div class='itemChannelTitle'><b>Channel : </b><p>" + channelTitle + "</p></div>" +
