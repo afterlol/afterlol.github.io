@@ -103,6 +103,14 @@ function onSearch(response) {
             }
             openPage();
             createPaging();
+            document.getElementById('previousPage').onClick = () => {
+                count--;
+                openPage();
+            }
+            document.getElementById('nextPage').onClick = () => {
+                count++;
+                openPage();
+            }
             clearInterval(interval);
         }
     }, 200);
