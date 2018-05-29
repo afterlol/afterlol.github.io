@@ -31,7 +31,7 @@ let app = {
 		return promise;
 	},
 	eventPromise(num){
-		app.getJsonInfo('sessions.json').then(function(data){
+		app.getJsonInfo('./json/sessions.json').then(function(data){
 			let str = JSON.parse(data);
 			if( num == '1'){
 				app.const.arrayOfSessionOne = str.session1.rounds;
@@ -44,7 +44,7 @@ let app = {
 
 			app.getMainLineBlock(str);
 		});
-		app.getJsonInfo('users.json').then(function(data){
+		app.getJsonInfo('./json/users.json').then(function(data){
 			let str = JSON.parse(data);
 			app.const.lengthOfUsers = str.users.length;
 			app.const.arrayOfUsers = str.users;
